@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from CMS import views
+from django.conf.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-]
+    url(r'^books/', views.test),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^home', views.home),
+    url(r'^staticPage/(?P<page_id>\d+)/$', views.staticPage)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
