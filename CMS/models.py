@@ -13,8 +13,8 @@ class Category(models.Model):
 
 class Site(models.Model):
     name = models.CharField(max_length=20)
-    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
-    main_header_of_site = models.CharField(max_length=200, default='')
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
+    main_header_of_site = models.CharField(max_length=200, default='', blank=True)
     content = RichTextUploadingField()
     enable = models.BooleanField(default=True)
     only_for_log_in = models.BooleanField()

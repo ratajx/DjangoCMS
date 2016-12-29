@@ -19,13 +19,20 @@ def static_page(request, page_id):
     if(site is None):
         return render(request, '404.html')
 
+    if site.main_header_of_site == '':
+        pageHeader = site.name
+    else:
+        pageHeader = site.main_header_of_site
+
     if site.only_for_log_in:
         if request.user.is_authenticated:
-            return render(request, 'staticPage.html', {'pageContent': site.content})
+            return render(request, 'staticPage.html', {'pageContent': site.content,
+                                                       'pageHeader': pageHeader})
         else:
             return redirect('/accounts/login/')
     else:
-        return render(request, 'staticPage.html', {'pageContent': site.content})
+        return render(request, 'staticPage.html', {'pageContent': site.content,
+                                                   'pageHeader': pageHeader})
 
 def handler_404(request):
     return render(request, '404.html')

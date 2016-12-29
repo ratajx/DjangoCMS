@@ -1,17 +1,18 @@
 {% include 'base.html' %}
 {% block content %}
-    {% if user.is_authenticated %}
-        Hello {{ user.username }}!
-    {% else %}
-        Hello guest!
-    {% endif %}
+    <div class="container">
+        {% if user.is_authenticated %}
+            <h1 class="text-center">Hello {{ user.username }}, this is simple CMS built using Django.</h1>
+        {% else %}
+            <h1 class="text-center">Hello guest, this is simple CMS built using Django.</h1>
+        {% endif %}
 
-
-    {% for new in news %}
-        <div>
-            {% autoescape off %}
-                {{ new.short_text }}
-            {% endautoescape %}
-        </div>
-    {% endfor %}
+        {% for new in news %}
+            <div>
+                {% autoescape off %}
+                    {{ new.short_text }}
+                {% endautoescape %}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

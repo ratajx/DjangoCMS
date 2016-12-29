@@ -7,7 +7,7 @@ from CMS.models import Logo
 
 
 class SiteAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'main_header_of_site', 'content', 'only_for_log_in', 'enable')
+    list_display = ('name', 'category', 'main_header_of_site', 'only_for_log_in', 'enable')
 
 
 class CategoryAdmin(admin.ModelAdmin):

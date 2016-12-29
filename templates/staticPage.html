@@ -1,8 +1,9 @@
 {% include 'base.html' %}
 {% block content %}
-<div class="container">
-{% autoescape off %}
-    {{ pageContent }}
-{% endautoescape %}
-</div>
+    <div class="container">
+        <h1 class="text-center staticPageHeader">{{ pageHeader }}</h1>
+        {% autoescape off %}
+            {{ pageContent }}
+        {% endautoescape %}
+    </div>
 {% endblock %}
