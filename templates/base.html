@@ -50,6 +50,7 @@
                         {% endfor %}
                         {% if user.is_authenticated %}
                             <li class="navbar-right"><a href="/accounts/logout">Log out</a></li>
+                            <li class="navbar-right"><a href="/account">{{ user.username }}</a></li>
                         {% else %}
                             <li class="navbar-right"><a href="/accounts/register">Sign up</a></li>
                             <li class="navbar-right"><a href="/accounts/login">Sign in</a></li>
@@ -61,7 +62,7 @@
     </nav>
 </header>
 
-<div>
+<div class="pageContent">
     {% block content %}
     {% endblock %}
 </div>

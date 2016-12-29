@@ -91,6 +91,34 @@ a:hover {
     font-weight: 900;
 }
 
-.staticPageHeader{
+.staticPageHeader {
     margin-bottom: 50px;
+}
+
+.newsBox {
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-left: 70px;
+    height: 115px;
+}
+
+@media (max-width: 991px) {
+    .newsBox {
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-left: 0px;
+    }
+}
+
+.pageContent{
+    margin-bottom: 50px;
+}
+
+.panel-body {
+    padding: 5px;
+    padding-left: 14px;
+}
+
+.newsHead {
+    font-weight: 900;
 }

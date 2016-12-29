@@ -21,7 +21,8 @@ class Site(models.Model):
 
 
 class News(models.Model):
-    short_text = RichTextUploadingField()
+    title = models.CharField(max_length=100, blank=False)
+    short_text = models.TextField(max_length=200)
     full_text = RichTextUploadingField()
     enable = models.BooleanField(default=True)
     date = models.DateTimeField(default=timezone.now, editable=False)

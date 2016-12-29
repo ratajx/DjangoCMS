@@ -27,7 +27,9 @@ urlpatterns = [
     url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^home', views.home),
     url(r'^staticPage/(?P<page_id>\d+)/$', views.static_page),
+    url(r'^news/(?P<news_id>\d+)/$', views.news_page),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^account/', views.account),
     url(r'^$', views.home),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

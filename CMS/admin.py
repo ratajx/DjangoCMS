@@ -15,7 +15,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('short_text', 'full_text', 'enable', 'date')
+    list_display = ('title', 'short_text', 'enable', 'date')
 
 
 class CommentAdmin(admin.ModelAdmin):
