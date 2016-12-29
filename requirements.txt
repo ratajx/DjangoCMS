@@ -1,0 +1,4 @@
+Django==1.10.2
+django-registration-redux==1.4
+virtualenv==15.0.3
+virtualenvwrapper-win==1.2.1

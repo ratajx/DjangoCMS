@@ -1,11 +1,6 @@
 from django.shortcuts import render
-from CMS.models import Book
 from CMS.models import Site
 from django.contrib.auth.decorators import login_required
-
-def test(request):
-    books=Book.objects.all()
-    return render(request, 'books.html', {'books':books})
 
 @login_required
 def home(request):

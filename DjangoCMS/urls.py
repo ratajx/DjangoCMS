@@ -22,9 +22,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^books/', views.test),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^home', views.home),
-    url(r'^staticPage/(?P<page_id>\d+)/$', views.staticPage)
+    url(r'^staticPage/(?P<page_id>\d+)/$', views.staticPage),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

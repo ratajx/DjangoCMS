@@ -41,8 +41,15 @@ INSTALLED_APPS = [
     'social_django',
     'social.apps.django_app.default',
     'CMS.templatetags',
+    'ckeditor_uploader',
+    'ckeditor',
+    'PIL',
     'CMS',
 ]
+
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+
+CKEDITOR_IMAGE_BACKEND = "pillow"
 
 REGISTRATION_AUTO_LOGIN = True
 
@@ -130,6 +137,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/static/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),

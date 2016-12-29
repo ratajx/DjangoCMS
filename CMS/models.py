@@ -1,19 +1,45 @@
 from __future__ import unicode_literals
-
 from django.db import models
-
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils import timezone
+from django.contrib.auth.models import User
 
-class Book(models.Model):
-    author = models.CharField(max_length=200)
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    published_date = models.DateField(
-            blank=True, default=timezone.now)
-    price = models.DecimalField(decimal_places=2, max_digits=8)
-    stock = models.IntegerField(default=0)
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
 
 class Site(models.Model):
-    name = models.CharField(max_length=50)
-    only_log_in = models.BooleanField()
-    content = models.TextField()
+    name = models.CharField(max_length=20)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True)
+    main_header_of_site = models.CharField(max_length=200, default='')
+    content = RichTextUploadingField()
+    enable = models.BooleanField(default=True)
+    only_for_log_in = models.BooleanField()
+
+
+class News(models.Model):
+    short_text = RichTextUploadingField()
+    full_text = RichTextUploadingField()
+    enable = models.BooleanField(default=True)
+    date = models.DateTimeField(default=timezone.now, editable=False)
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, editable=False)
+    date = models.DateTimeField(default=timezone.now, editable=False)
+    comment = models.TextField(max_length=3000, editable=False)
+
+
+class Logo(models.Model):
+    logo = models.ImageField(null=True)
+
+    def image_thumb(self):
+        return '<img src="/media/%s" width="100" height="100" />' % (self.logo)
+
+    image_thumb.allow_tags = True
+
+    def __str__(self):
+        return self.logo.name
