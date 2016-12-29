@@ -25,7 +25,7 @@ SECRET_KEY = '0x!n)m=y7c_*t6qe9uka_275i8ll3#t8afa2df!pr1x12kfc(b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -146,6 +146,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
+    'C:\Users\Jakub\PycharmProjects\DjangoCMS\static'
 )
 
 #social

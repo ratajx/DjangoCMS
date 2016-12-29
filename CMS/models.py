@@ -36,10 +36,8 @@ class Comment(models.Model):
 class Logo(models.Model):
     logo = models.ImageField(null=True)
 
-    def image_thumb(self):
-        return '<img src="/media/%s" width="100" height="100" />' % (self.logo)
-
-    image_thumb.allow_tags = True
-
     def __str__(self):
-        return self.logo.name
+        if self.logo.name is not None:
+            return self.logo.name
+        else:
+            return 'not set'

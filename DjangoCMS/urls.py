@@ -19,12 +19,17 @@ from CMS import views
 from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404, handler500
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^oauth/', include('social.apps.django_app.urls', namespace='social')),
     url(r'^home', views.home),
-    url(r'^staticPage/(?P<page_id>\d+)/$', views.staticPage),
+    url(r'^staticPage/(?P<page_id>\d+)/$', views.static_page),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^$', views.home),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+handler404 = 'CMS.views.handler_404'
+handler500 = 'CMS.views.handler_404'

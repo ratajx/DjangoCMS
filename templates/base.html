@@ -6,9 +6,13 @@
     <title>CMS</title>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
@@ -16,25 +20,31 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-fixed-top" style="position: static;">
         <div class="navbar-custom">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed menuButton" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed menuButton" data-toggle="collapse"
+                            data-target="#menu" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    {% getLogo as logo %}
+                    {% if logo != None%}
+                        <a class="" href="/home">
+                            <img src="{{ logo.url }}" class="logoImage">
+                        </a>
+                    {% endif %}
                 </div>
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="nav navbar-nav list-inline" style="min-width:100%">
-                        <li><a href="/home">Home</a></li>
                         {% if user.is_authenticated %}
                             {% getAllSites as sites %}
                         {% else %}
                             {% getAllSitesForGuest as sites %}
-                        {%  endif %}
+                        {% endif %}
                         {% for site in sites %}
                             <li><a href="/staticPage/{{ site.id }}">{{ site.name }}</a></li>
                         {% endfor %}
@@ -51,21 +61,17 @@
     </nav>
 </header>
 
-<div class="container">
-    <div style="height: 110px"></div>
-</div>
-
 <div>
     {% block content %}
     {% endblock %}
 </div>
 
 <footer class="footer navbar-fixed-bottom">
-        <div class="row">
-            <div class="col-lg-12">
-                <h6 class="text-center">Created by Jakub Ratajski</h6>
-            </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h6 class="text-center">Created by Jakub Ratajski</h6>
         </div>
+    </div>
 </footer>
 </body>
 </html>

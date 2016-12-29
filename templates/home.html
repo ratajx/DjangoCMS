@@ -1,4 +1,17 @@
 {% include 'base.html' %}
 {% block content %}
-    Hello {{ user.username }}
+    {% if user.is_authenticated %}
+        Hello {{ user.username }}!
+    {% else %}
+        Hello guest!
+    {% endif %}
+
+
+    {% for new in news %}
+        <div>
+            {% autoescape off %}
+                {{ new.short_text }}
+            {% endautoescape %}
+        </div>
+    {% endfor %}
 {% endblock %}

@@ -3,11 +3,13 @@
 
 {% block content %}
     <div class="container">
-        <form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
-
-  <input type="submit" value="{% trans 'Register' %}" class="btn btn-primary"/>
-</form>
+        <h1 class="text-center">Registration</h1>
+        <div class="col-xs-offset-2 col-xs-8 registrationBox">
+            <form method="post" action=".">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="{% trans 'Register' %}" class="btn btn-primary"/>
+            </form>
+        </div>
     </div>
 {% endblock %}
