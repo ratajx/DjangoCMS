@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^news/(?P<news_id>\d+)/$', views.news_page),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^account/', views.account),
+    url(r'^addComment/', views.addComment),
     url(r'^$', views.home),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

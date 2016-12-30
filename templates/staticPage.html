@@ -3,7 +3,35 @@
     <div class="container">
         <h1 class="text-center staticPageHeader">{{ pageHeader }}</h1>
         {% autoescape off %}
-            {{ pageContent }}
+            {{ site.content }}
         {% endautoescape %}
+
+        <div class="commnetSection">
+            <h2 class="strong">Comments</h2>
+            {% if comments.count == 0 %}
+                <h6 class="notCommented">No one commented yet.</h6>
+            {% endif %}
+            {% for commentMessage in comments %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                            {{ commentMessage.user.username }}
+                            <span class="pull-right">{{ commentMessage.date }}</span>
+                        </h5>
+                    </div>
+                    <div class="panel-body">
+                        <h3>{{ commentMessage.comment }}</h3>
+                    </div>
+                </div>
+            {% endfor %}
+            <h3><strong>Add comment:</strong></h3>
+            <form action="/addComment/" method="post">
+                {% csrf_token %}
+                <textarea class="form-control" rows="5" placeholder="Write your comment..." name="comment"></textarea>
+                <input type="hidden" name="site" value="{{ site.id }}">
+                <input type="submit" class="btn btn-primary pull-right">
+            </form>
+        </div>
     </div>
 {% endblock %}

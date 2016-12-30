@@ -19,7 +19,7 @@ class NewsAdmin(admin.ModelAdmin):
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'comment', 'date')
+    list_display = ('user', 'comment', 'date', 'news', 'site')
 
     def has_add_permission(self, request, obj=None):
         return False

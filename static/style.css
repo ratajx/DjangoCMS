@@ -110,7 +110,7 @@ a:hover {
     }
 }
 
-.pageContent{
+.pageContent {
     margin-bottom: 50px;
 }
 
@@ -121,4 +121,23 @@ a:hover {
 
 .newsHead {
     font-weight: 900;
+}
+
+textarea {
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.commnetSection {
+    border-top: 2px solid rgba(44, 62, 80, 0.6);
+    margin-top: 25px;
+}
+
+.strong {
+    font-weight: 900;
+}
+
+.notCommented {
+    color: #2c3e50;
+    margin-left: 20px;
 }
