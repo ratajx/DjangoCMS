@@ -9,7 +9,7 @@ class Category(models.Model):
     name = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.name
+        return self.name.encode('utf-8')
 
 
 class Site(models.Model):
@@ -21,7 +21,7 @@ class Site(models.Model):
     only_for_log_in = models.BooleanField()
 
     def __str__(self):
-        return self.name
+        return self.name.encode('utf-8')
 
 
 class News(models.Model):
@@ -32,7 +32,7 @@ class News(models.Model):
     date = models.DateTimeField(default=timezone.now, editable=False)
 
     def __str__(self):
-        return self.title
+        return self.title.encode('utf-8')
 
 
 class Comment(models.Model):
@@ -48,6 +48,6 @@ class Logo(models.Model):
 
     def __str__(self):
         if self.logo.name is not None:
-            return self.logo.name
+            return self.logo.name.encode('utf-8')
         else:
             return 'not set'

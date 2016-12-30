@@ -139,7 +139,12 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
-    'C:\Users\Jakub\PycharmProjects\DjangoCMS\static'
+    'C:/Users/Jakub/PycharmProjects/DjangoCMS/static'
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
 # social

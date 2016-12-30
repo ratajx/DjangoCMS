@@ -4,7 +4,7 @@ from CMS.models import Site
 from CMS.models import News
 from django.core.exceptions import ObjectDoesNotExist
 from CMS.models import Comment
-from CMS.forms import CommentForm
+from django.http import HttpResponse
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
@@ -70,7 +70,7 @@ def news_page(request, news_id):
 
 
 @login_required(login_url='/accounts/login/')
-def addComment(request):
+def add_comment(request):
     if request.method == 'POST':
         comment = request.POST.get('comment', '')
         news = request.POST.get('news', None)
@@ -101,3 +101,21 @@ def addComment(request):
         return redirect('/staticPage/' + site)
     else:
         return redirect('/news/' + news)
+
+
+@login_required(login_url='accounts/login/')
+def remove_comment(request):
+    if request.method == 'POST':
+        id = request.POST.get('id', None)
+
+    if id is not None:
+        try:
+            comment = Comment.objects.get(id=id)
+        except ObjectDoesNotExist:
+            comment = None
+
+        if comment is not None:
+            if comment.user == request.user:
+                comment.delete()
+
+    return HttpResponse(id)

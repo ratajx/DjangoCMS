@@ -30,9 +30,11 @@ urlpatterns = [
     url(r'^news/(?P<news_id>\d+)/$', views.news_page),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^account/', views.account),
-    url(r'^addComment/', views.addComment),
+    url(r'^addComment/', views.add_comment),
+    url(r'^removeComment/', views.remove_comment),
     url(r'^$', views.home),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
+              static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'CMS.views.handler_404'
 handler500 = 'CMS.views.handler_404'

@@ -1,0 +1,25 @@
+<h2 class="strong">Comments</h2>
+{% if comments.count == 0 %}
+    <h6 class="notCommented">No one commented yet.</h6>
+{% endif %}
+{% for commentMessage in comments %}
+    <div class="panel panel-default" id="comment_{{ commentMessage.id }}">
+        <div class="panel-heading">
+            <h5 class="panel-title">
+                <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+                {{ commentMessage.user.username }}
+                {% if commentMessage.user == user %}
+                    <a href="javascript:;" onclick="removeComment({{ commentMessage.id }})">
+                        <span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
+                        <input type="hidden" value="{{ commentMessage.id }}">
+                    </a>
+                {% endif %}
+                <span class="pull-right">{{ commentMessage.date }}</span>
+            </h5>
+        </div>
+        <div class="panel-body">
+            <h3>{{ commentMessage.comment }}</h3>
+        </div>
+    </div>
+{% endfor %}
+<h3><strong>Add comment:</strong></h3>
