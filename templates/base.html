@@ -33,7 +33,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     {% getLogo as logo %}
-                    {% if logo != None%}
+                    {% if logo != None %}
                         <a class="" href="/home">
                             <img src="{{ logo.url }}" class="logoImage">
                         </a>
@@ -42,12 +42,27 @@
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="nav navbar-nav list-inline" style="min-width:100%">
                         {% if user.is_authenticated %}
-                            {% getAllSites as sites %}
+                            {% getAllSites False as sites %}
+                            {% getAllCategory False as categorys %}
                         {% else %}
-                            {% getAllSitesForGuest as sites %}
+                            {% getAllSites True as sites %}
+                            {% getAllCategory True as categorys %}
                         {% endif %}
                         {% for site in sites %}
                             <li><a href="/staticPage/{{ site.id }}">{{ site.name }}</a></li>
+                        {% endfor %}
+                        {% for key,value in categorys.items %}
+                            {% if value|length %}
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{ key }}
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        {% for site in value %}
+                                            <li><a href="/staticPage/{{ site.id }}">{{ site.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
                         {% endfor %}
                         {% if user.is_authenticated %}
                             <li class="navbar-right"><a href="/accounts/logout">Log out</a></li>
